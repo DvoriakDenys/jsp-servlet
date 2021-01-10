@@ -1,0 +1,105 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.jsp-servlet</groupId>
+  <artifactId>jsp-servlet</artifactId>
+  <packaging>war</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>jsp-servlet Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <version.mysql.connector> 8.0.22 </version.mysql.connector>
+    <version.log4j> 1.2.17 </version.log4j>
+    <version.junit> 4.12 </version.junit>
+    <version.javax.servlet-api> 3.1.0 </version.javax.servlet-api>
+    <version.javax.servlet-jsp> 2.0 </version.javax.servlet-jsp>
+    <version.javax.servlet.jstl> 1.2 </version.javax.servlet.jstl>
+  </properties>
+
+  <dependencies>
+    <!-- jUnit -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${version.junit}</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- MySQL-connector-java -->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>${version.mysql.connector}</version>
+    </dependency>
+    <!-- Log4j -->
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>${version.log4j}</version>
+    </dependency>
+    <!-- Servlet api-->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>${version.javax.servlet-api}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet.jsp</groupId>
+      <artifactId>jsp-api</artifactId>
+      <version>${version.javax.servlet-jsp}</version>
+      <scope>provided</scope>
+    </dependency>
+    <!--Java STL-->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
+      <version>${version.javax.servlet.jstl}</version>
+    </dependency>
+    <!-- Json -->
+      <dependency>
+          <groupId>com.google.code.gson</groupId>
+          <artifactId>gson</artifactId>
+          <version>2.8.2</version>
+      </dependency>
+    <!-- Mockito-->
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-all</artifactId>
+      <version>1.10.19</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- Lombok -->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.16</version>
+    </dependency>
+  </dependencies>
+
+    <build>
+      <finalName>final-project</finalName>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.tomcat.maven</groupId>
+          <artifactId>tomcat7-maven-plugin</artifactId>
+          <version>2.2</version>
+          <configuration>
+            <url>http://localhost:8080</url>
+            <path>/</path>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.7.0</version>
+          <inherited>true</inherited>
+          <configuration>
+            <source>1.8</source>
+            <target>1.8</target>
+          </configuration>
+        </plugin>
+      </plugins>
+    </build>
+
+</project>
