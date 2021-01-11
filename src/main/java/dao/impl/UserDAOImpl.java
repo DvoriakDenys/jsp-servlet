@@ -2,6 +2,7 @@ package dao.impl;
 
 import config.pool.ConnectionPool;
 import dao.UserDAO;
+import entity.Report;
 import entity.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -38,6 +39,25 @@ public class UserDAOImpl implements UserDAO {
             throw e;
         } finally {
             Objects.requireNonNull(resultSet).close();
+        }
+
+        return null;
+    }
+
+    @Override
+    public User findById(int id) throws SQLException {
+        try (Connection connection = pool.getConnection();
+             PreparedStatement statement = connection.prepareStatement(bundle.getString("sql.user.findById"))) {
+            statement.setInt(1, id);
+            ResultSet rs = statement.executeQuery();
+
+            if (rs.next()) {
+                return daoMapper.mapResultSetToUser(rs);
+            }
+
+        } catch (SQLException e) {
+            log.error("Database error (dao level): " + e);
+            throw e;
         }
 
         return null;

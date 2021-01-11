@@ -3,6 +3,7 @@ package dao.impl;
 import config.pool.ConnectionPool;
 import dao.ReportDAO;
 import entity.Report;
+import entity.Status;
 import lombok.extern.log4j.Log4j;
 import mapper.DaoMapper;
 import java.sql.Connection;
@@ -86,4 +87,43 @@ public class ReportDAOImpl implements ReportDAO {
 
         return null;
     }
+
+    @Override
+    public List<Report> findAllReportsByUserId(Long id) throws SQLException {
+        List<Report> reports = new ArrayList<>();
+        try (Connection connection = pool.getConnection();
+
+             PreparedStatement statement = connection.prepareStatement(bundle.getString("sql.report.findReportsByUserId"))) {
+
+            statement.setLong(1, id);
+
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()) {
+                reports.add(daoMapper.mapResultSetToReport(rs));
+            }
+
+            return reports;
+
+        } catch (SQLException e) {
+            log.error("Database error (dao level): " + e);
+            throw e;
+        }
+    }
+
+
+    @Override
+    public void updateComment(Report report) throws SQLException {
+        final String query = bundle.getString("sql.report.updateComment");
+        try (final Connection connection = pool.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, report.getComment());
+            statement.setLong(2, report.getId());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            log.error("Database error (dao level): " + e);
+            throw e;
+        }
+    }
+
 }

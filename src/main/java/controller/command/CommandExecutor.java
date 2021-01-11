@@ -18,11 +18,24 @@ public enum CommandExecutor {
         commandMap.put(LOGIN_PAGE, new PageLoginCommand());
         commandMap.put(LOGOUT, new LogoutCommand());
         commandMap.put(LOGIN, new LoginCommand(new ServiceFactoryImpl()));
-        commandMap.put(REPORT_LIST, new InspectorReportListCommand(new ServiceFactoryImpl().createReportService()));
+        commandMap.put(INSPECTOR_REPORT_LIST, new InspectorReportListCommand(new ServiceFactoryImpl().createReportService()));
+        commandMap.put(CLIENT_REPORT_LIST, new ClientReportListCommand(new ServiceFactoryImpl().createReportService()));
         commandMap.put(LANGUAGE_CHANGE,new ChangeLanguageCommand());
         commandMap.put(REPORT_PAGE,new PageReportCreateCommand());
         commandMap.put(CREATE_REPORT, new ReportCreateCommand(new ServiceFactoryImpl().createReportService()));
         commandMap.put(VIEW_PAGE,new PageReportViewCommand(new ServiceFactoryImpl().createReportService()));
+        commandMap.put(INSPECTOR_CABINET,new PageInspectorCabinet());
+        commandMap.put(CLIENT_CABINET,new PageClientCabinet());
+
+        commandMap.put(CLIENT_REPORT_VIEW,new CommandClientViewReport(new ServiceFactoryImpl().createReportService(),
+                new ServiceFactoryImpl().createUserService()));
+
+        commandMap.put(INSPECTOR_REPORT_VIEW,new CommandInspectorViewReport(new ServiceFactoryImpl().createReportService(),
+                new ServiceFactoryImpl().createUserService()));
+
+        commandMap.put(ADD_COMMENT_AND_STATUS,new InspectorAddComment(new ServiceFactoryImpl().createReportService(),
+                new ServiceFactoryImpl().createStatusService()));
+
 
     }
 

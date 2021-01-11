@@ -17,8 +17,18 @@ public class ReportServiceImpl implements ReportService {
         return reportDAO.findAll();
     }
 
+    @Override
+    public List<Report> findAllReportsByUserId(Long id) throws SQLException {
+        return reportDAO.findAllReportsByUserId(id);
+    }
+
     public void save(Report report) throws SQLException {
         reportDAO.save(report);
+    }
+
+    @Override
+    public void updateComment(Report report) throws SQLException {
+        reportDAO.updateComment(report);
     }
 
     @Override

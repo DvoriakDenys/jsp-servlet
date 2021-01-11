@@ -2,24 +2,33 @@ package controller.command;
 
 import constant.Pages;
 import entity.Report;
+import entity.Status;
+import entity.User;
 import lombok.RequiredArgsConstructor;
 import service.ReportService;
+import service.StatusService;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
+import java.util.List;
 
 @RequiredArgsConstructor
-public class PageReportViewCommand implements Command {
-
+public class InspectorAddComment implements Command{
     private final ReportService reportService;
+    private final StatusService statusService;
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+
         int id = Integer.parseInt(request.getParameter("reportId"));
-        Report report = reportService.findById(id);
+        String comment = request.getParameter("comment");
 
-        request.getSession().setAttribute("report",report);
+        Report reports = reportService.findById(id);
+        reports.setComment(comment);
+//        reports.setStatus(status1);
 
-        return Pages.VIEW;
+        reportService.updateComment(reports);
+        return Pages.INSPECTOR_CABINET;
     }
 }

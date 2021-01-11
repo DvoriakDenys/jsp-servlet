@@ -1,6 +1,7 @@
 package factory;
 
 import dao.ReportDAO;
+import dao.StatusDAO;
 import dao.UserDAO;
 
 /**
@@ -12,4 +13,5 @@ public abstract class DAOFactory {
 
     public abstract ReportDAO createReportDAO();
 
+    public abstract StatusDAO createServiceService();
 }

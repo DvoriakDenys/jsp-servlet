@@ -32,13 +32,14 @@
         <a class="p-2 text-dark" href="/cabinet?command=client_cabinet">
            <fmt:message key="front.main" bundle="${bundle}"/></a>
 
-        <a class="p-2 text-dark" href="/cabinet?command=report_list">
+        <a class="p-2 text-dark" href="/cabinet?command=client_report_list">
             <fmt:message key="front.report" bundle="${bundle}"/></a>
 
         <a class="p-2 text-dark" href="/cabinet?command=report_page">
             <fmt:message key="report.newReport" bundle="${bundle}"/></a>
     </nav>
-    <a class="btn btn-outline-primary" href="/logout"><span>front.signOut</span></a>
+    <a class="btn btn-outline-primary" href="/logout?command=logout"><span>
+        <fmt:message key="front.signOut" bundle="${bundle}"/></span></a>
 
 </div>
 <c:set var="langf" value="${cookie.lang.value}" scope="session"/>

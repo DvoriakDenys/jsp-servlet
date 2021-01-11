@@ -1,6 +1,7 @@
 package factory;
 
 import service.ReportService;
+import service.StatusService;
 import service.UserService;
 
 /**
@@ -12,4 +13,5 @@ public abstract class ServiceFactory {
 
     public abstract ReportService createReportService();
 
+    public abstract StatusService createStatusService();
 }

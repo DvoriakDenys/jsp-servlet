@@ -24,6 +24,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void saveUser(User user) throws SQLException {
+    }
 
+    @Override
+    public User findById(int id) throws SQLException {
+        return userDAO.findById(id);
     }
 }

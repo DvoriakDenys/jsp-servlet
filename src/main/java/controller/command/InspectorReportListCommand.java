@@ -19,6 +19,7 @@ public class InspectorReportListCommand implements Command {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         List<Report> reports = reportService.findAll();
         request.setAttribute("reports", reports);
-        return Pages.REPORT_LIST;
+        return Pages.INSPECTOR_REPORT_LIST;
     }
+
 }

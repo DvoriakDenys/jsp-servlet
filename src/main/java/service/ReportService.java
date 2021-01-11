@@ -9,7 +9,11 @@ public interface ReportService {
 
     List<Report> findAll() throws SQLException;
 
+    List<Report> findAllReportsByUserId(Long id) throws SQLException;
+
     void save(Report report) throws SQLException;
+
+    void updateComment(Report report) throws SQLException;
 
     Report findById(int id) throws SQLException;
 }
