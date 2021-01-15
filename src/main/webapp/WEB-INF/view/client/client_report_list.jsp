@@ -1,5 +1,5 @@
 <%@page pageEncoding="UTF-8" %>
-<%@include file="components/client_header.jsp" %>
+<%@include file="../components/client_header.jsp" %>
 
 
 <div>

@@ -1,6 +1,11 @@
 package controller.command;
 
 import constant.Pages;
+import controller.command.client.*;
+import controller.command.inspector.CommandInspectorViewReport;
+import controller.command.inspector.InspectorAddComment;
+import controller.command.inspector.InspectorReportListCommand;
+import controller.command.inspector.PageInspectorCabinet;
 import factory.impl.ServiceFactoryImpl;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,6 +31,9 @@ public enum CommandExecutor {
         commandMap.put(VIEW_PAGE,new PageReportViewCommand(new ServiceFactoryImpl().createReportService()));
         commandMap.put(INSPECTOR_CABINET,new PageInspectorCabinet());
         commandMap.put(CLIENT_CABINET,new PageClientCabinet());
+        commandMap.put(CLIENT_REPORT_EDIT,new PageClientReportView(new ServiceFactoryImpl().createReportService()));
+
+        commandMap.put(UPDATE_CLIENT_REPORT,new CommandUpdateClientReport(new ServiceFactoryImpl().createReportService()));
 
         commandMap.put(CLIENT_REPORT_VIEW,new CommandClientViewReport(new ServiceFactoryImpl().createReportService(),
                 new ServiceFactoryImpl().createUserService()));

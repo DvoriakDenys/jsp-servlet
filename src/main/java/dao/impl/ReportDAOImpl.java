@@ -111,6 +111,25 @@ public class ReportDAOImpl implements ReportDAO {
         }
     }
 
+    @Override
+    public void updateReport (Report report) throws SQLException{
+        final String query = bundle.getString("sql.report.updateReport");
+
+        try (final Connection connection = pool.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setString(1, report.getReport());
+            statement.setString(2, report.getNameOfReport());
+            statement.setString(3, report.getComment());
+            statement.setInt(4, 2);
+            statement.setLong(5, report.getId());
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            log.error("Database error (dao level): " + e);
+            throw e;
+        }
+    }
 
     @Override
     public void updateComment(Report report) throws SQLException {
@@ -118,7 +137,8 @@ public class ReportDAOImpl implements ReportDAO {
         try (final Connection connection = pool.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, report.getComment());
-            statement.setLong(2, report.getId());
+            statement.setInt(2, report.getStatus().getId().intValue());
+            statement.setLong(3, report.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
             log.error("Database error (dao level): " + e);

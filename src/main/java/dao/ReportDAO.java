@@ -9,6 +9,8 @@ import java.util.List;
 
 public interface ReportDAO {
 
+    void updateReport (Report report) throws SQLException;
+
     List<Report> findAll() throws SQLException;
 
     boolean save(Report report) throws SQLException;

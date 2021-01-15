@@ -8,10 +8,9 @@ import dao.impl.StatusDAOImpl;
 import dao.impl.UserDAOImpl;
 import factory.DAOFactory;
 import mapper.impl.DaoMapperImpl;
-import service.StatusService;
-import service.impl.StatusServiceImpl;
 
 public class DAOFactoryImpl extends DAOFactory {
+
     @Override
     public UserDAO createUserDAO() {
         return new UserDAOImpl(new DaoMapperImpl());
@@ -23,7 +22,7 @@ public class DAOFactoryImpl extends DAOFactory {
     }
 
     @Override
-    public StatusDAO createServiceService() {
+    public StatusDAO createStatusService() {
         return new StatusDAOImpl(new DaoMapperImpl());
     }
 }

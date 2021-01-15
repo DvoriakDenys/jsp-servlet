@@ -8,5 +8,6 @@ import java.sql.SQLException;
 public interface UserDAO {
 
     User findUserByEmail (String email) throws SQLException;
+
     User findById(int id) throws SQLException;
 }

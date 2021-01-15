@@ -28,6 +28,7 @@ public class StatusDAOImpl implements StatusDAO {
         try (Connection connection = pool.getConnection();
              PreparedStatement statement = connection.prepareStatement(bundle.getString("sql.report.findStatusByName"))) {
             statement.setString(1, name);
+
             ResultSet rs = statement.executeQuery();
 
             if (rs.next()) {

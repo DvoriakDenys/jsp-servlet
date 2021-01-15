@@ -21,6 +21,6 @@ public class ServiceFactoryImpl extends ServiceFactory {
 
     @Override
     public StatusService createStatusService() {
-        return new StatusServiceImpl(new DAOFactoryImpl().createServiceService());
+        return new StatusServiceImpl(new DAOFactoryImpl().createStatusService());
     }
 }

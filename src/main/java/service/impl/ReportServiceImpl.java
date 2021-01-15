@@ -32,6 +32,11 @@ public class ReportServiceImpl implements ReportService {
     }
 
     @Override
+    public void updateReport(Report report) throws SQLException {
+        reportDAO.updateReport(report);
+    }
+
+    @Override
     public Report findById(int id) throws SQLException {
         return reportDAO.findById(id);
     }

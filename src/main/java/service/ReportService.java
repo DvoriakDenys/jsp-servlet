@@ -15,5 +15,7 @@ public interface ReportService {
 
     void updateComment(Report report) throws SQLException;
 
+    void updateReport (Report report) throws SQLException;
+
     Report findById(int id) throws SQLException;
 }

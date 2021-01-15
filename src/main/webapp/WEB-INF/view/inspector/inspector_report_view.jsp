@@ -1,10 +1,11 @@
 <%@page pageEncoding="UTF-8" %>
-<%@include file="components/inspector_header.jsp" %>
+<%@include file="../components/inspector_header.jsp" %>
 
 
 <div>
     <div class="container mt-5">
         <div class="alert alert-info mt-2">
+
             <form action="/" method="post">
             <h2 >
                 <fmt:message key="client.report" bundle="${bundle}"/>
@@ -29,10 +30,17 @@
 
             <input name="command" value="add_comment_and_status" type="hidden"/>
             <input name="reportId" value="${report.id}" type="hidden"/>
-            <button type="submit" class="btn btn-success">
-                <span> <fmt:message key="report.submit" bundle="${bundle}"/> </span>
-            </button>
+
+                <button class="btn btn-success" name="status" value="ACCEPT" type="submit">
+                    <span> <fmt:message key="report.submit" bundle="${bundle}"/> </span>
+                </button>
+
+                <button class="btn btn-danger" name="status" value="REFUSE" type="submit">
+                    <span> <fmt:message key="report.submit" bundle="${bundle}"/> </span>
+                </button>
+
         </form>
+
     </div>
 </div>
 </div>

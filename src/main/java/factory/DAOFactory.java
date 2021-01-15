@@ -13,5 +13,5 @@ public abstract class DAOFactory {
 
     public abstract ReportDAO createReportDAO();
 
-    public abstract StatusDAO createServiceService();
+    public abstract StatusDAO createStatusService();
 }
