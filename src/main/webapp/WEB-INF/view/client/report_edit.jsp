@@ -19,8 +19,8 @@
 
                 <h4><fmt:message key="front.report" bundle="${bundle}"/></h4>
 
-                <textarea name="report" placeholder="Write your report here" class="form-control" rows="5" cols="33">
-                    ${report.comment}
+                <textarea name="report" placeholder="Write your report here" class="form-control" rows="5">
+
                 </textarea><br>
 
                 <input name="command" value="update_client_report" type="hidden"/>

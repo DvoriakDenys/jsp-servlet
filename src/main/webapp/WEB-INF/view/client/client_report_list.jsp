@@ -14,17 +14,20 @@
 
                     <p><b>Date:</b> <span>${report.createdDate}</span></p>
 
-<%--                <div>--%>
-<%--                    <div th:if="${report.status.name == 'ACCEPT'}">--%>
-<%--                        <p align="right" style="color:Green"><b>Accept</b></p>--%>
-<%--                    </div>--%>
-<%--                    <div th:if="${el.status.name == 'VERIFY'}">--%>
-<%--                        <p align="right" style="color:Orange"><b th:text="#{client.verify}"></b></p>--%>
-<%--                    </div>--%>
-<%--                    <div th:if="${el.status.name == 'REFUSE'}">--%>
-<%--                        <p align="right" style="color:Red"><b th:text="#{client.refuse}"></b></p>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
+
+                <div>
+                    <c:if test="${report.status.id == 1}">
+                        <p align="right" style="color:Green"><b>Accept</b></p>
+                    </c:if>
+                    <c:if test="${report.status.id == 2}">
+                        <p align="right" style="color:Orange">
+                            <b><fmt:message key="client.verify" bundle="${bundle}"/></b></p>
+                    </c:if>
+                    <c:if test="${report.status.id == 3}">
+                        <p align="right" style="color:Red">
+                            <b><fmt:message key="client.refuse" bundle="${bundle}"/></b></p>
+                    </c:if>
+                </div>
 
                     <a class="btn btn-warning" href="/cabinet?command=client_report_view&reportId=${report.id}"> <span>View</span></a>
 

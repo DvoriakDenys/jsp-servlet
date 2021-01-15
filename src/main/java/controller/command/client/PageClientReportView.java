@@ -23,7 +23,6 @@ public class PageClientReportView implements Command {
         int id = Integer.parseInt(request.getParameter("reportId"));
         Report report = reportService.findById(id);
         request.setAttribute("report", report);
-//        request.setAttribute("status", report.getStatus().getId().intValue());
 
         return Pages.CLIENT_REPORT_EDIT;
     }

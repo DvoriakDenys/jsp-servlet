@@ -38,6 +38,7 @@ public class ReportDAOImpl implements ReportDAO {
         try (Connection connection = pool.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
             resultSet = statement.executeQuery();
+
             while (resultSet.next()) {
                 reports.add(daoMapper.mapResultSetToReport(resultSet));
             }

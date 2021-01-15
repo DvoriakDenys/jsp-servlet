@@ -26,12 +26,10 @@
                     ${report.comment}
                 </textarea><br>
 
-<%--                <c:when test = "${ status == 3}" >
-<h1>${status}</h1> --%>
-
+                <c:if test = "${ status == 3}" >
                 <a class="btn btn-warning" href="/cabinet?command=client_report_edit&reportId=${report.id}">
                     <fmt:message key="report.editReport" bundle="${bundle}"/> </a>
-
+                </c:if>
             </div>
         </div>
 </div>
