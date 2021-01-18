@@ -37,9 +37,9 @@ public class ReportServiceImpl implements ReportService {
     }
 
     @Override
-    public List<Report> paginationReport (int pageNumber, int pageSize) throws SQLException{
+    public List<Report> paginationReport (int pageNumber, int pageSize, String sorting) throws SQLException{
 
-        return reportDAO.paginationReport(pageNumber, pageSize);
+        return reportDAO.paginationReport(pageNumber, pageSize, sorting);
     }
 
     @Override

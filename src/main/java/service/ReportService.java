@@ -19,5 +19,5 @@ public interface ReportService {
 
     Report findById(int id) throws SQLException;
 
-    List<Report> paginationReport (int pageNumber, int pageSize) throws SQLException;
+    List<Report> paginationReport (int pageNumber, int pageSize, String sorting) throws SQLException;
 }

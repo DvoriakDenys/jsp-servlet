@@ -10,6 +10,14 @@
 <div class="container mt-5">
         <h1><fmt:message key="front.listOfReports" bundle="${bundle}"/> </h1> <br>
 
+    <a class="btn btn-warning"
+       href="/cabinet?command=sort_and_pagination_report&sorting=report">
+        <b>Sort by report</b></a>
+
+    <a class="btn btn-warning"
+       href="/cabinet?command=sort_and_pagination_report&sorting=created_date">
+        <b>Sort by created_date</b></a>
+
     <c:forEach var="report" items="${reports}">
         <div class="alert alert-info mt-2">
             <table>
@@ -38,13 +46,27 @@
         </div>
     </c:forEach>
 
-    <a class="btn btn-warning"
-       href="/cabinet?command=sort_and_pagination_report&currentPage=${currentPage + 1}">
-        <b><fmt:message key="front.nextPage" bundle="${bundle}"/></b></a>
+    <c:choose>
+        <c:when test="${currentPage < quantityPage}">
+            <a class="btn btn-warning"
+               href="/cabinet?command=sort_and_pagination_report&currentPage=${currentPage + 1}">
+                <b><fmt:message key="front.nextPage" bundle="${bundle}"/></b></a>
+        </c:when>
+        <c:otherwise>
+            <b><fmt:message key="front.nextPage" bundle="${bundle}"/></b>
+        </c:otherwise>
+    </c:choose>
 
-    <a class="btn btn-warning"
-       href="/cabinet?command=sort_and_pagination_report&currentPage=${currentPage - 1}">
-        <b><fmt:message key="front.lastPage" bundle="${bundle}"/></b></a>
+    <c:choose>
+        <c:when test="${currentPage > 1 && currentPage <= quantityPage }">
+            <a class="btn btn-warning"
+               href="/cabinet?command=sort_and_pagination_report&currentPage=${currentPage - 1}">
+                <b><fmt:message key="front.lastPage" bundle="${bundle}"/></b></a>
+        </c:when>
+        <c:otherwise>
+            <b><fmt:message key="front.lastPage" bundle="${bundle}"/></b></a>
+        </c:otherwise>
+    </c:choose>
 
 </div>
 

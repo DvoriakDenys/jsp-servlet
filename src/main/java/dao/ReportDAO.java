@@ -21,5 +21,5 @@ public interface ReportDAO {
 
     void updateComment (Report report) throws SQLException;
 
-    List<Report> paginationReport (int pageNumber, int pageSize) throws SQLException;
+    List<Report> paginationReport (int pageNumber, int pageSize, String sorting) throws SQLException;
 }

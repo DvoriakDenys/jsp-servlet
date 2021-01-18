@@ -8,6 +8,7 @@ import lombok.extern.log4j.Log4j;
 import mapper.DaoMapper;
 
 import java.sql.*;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -106,15 +107,14 @@ public class ReportDAOImpl implements ReportDAO {
     }
 
     @Override
-    public List<Report> paginationReport ( final int currentPage, final int quantityReportOnPage) throws SQLException{
+    public List<Report> paginationReport ( final int currentPage, final int quantityReportOnPage,
+                                           final String sorting) throws SQLException{
         List <Report> reports = new ArrayList<>();
 
         try (Connection connection = pool.getConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement(bundle.getString("sql.report.paginationReport"));
-
-            preparedStatement.setInt(1, quantityReportOnPage);
-            preparedStatement.setInt(2, currentPage);
-
+            String query = bundle.getString("sql.report.paginationReport");
+            String query2 = MessageFormat.format(query, sorting, quantityReportOnPage, currentPage);
+            PreparedStatement preparedStatement = connection.prepareStatement(query2);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
