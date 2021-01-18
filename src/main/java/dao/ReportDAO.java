@@ -20,4 +20,6 @@ public interface ReportDAO {
     List<Report> findAllReportsByUserId(Long id) throws SQLException;
 
     void updateComment (Report report) throws SQLException;
+
+    List<Report> paginationReport (int pageNumber, int pageSize) throws SQLException;
 }

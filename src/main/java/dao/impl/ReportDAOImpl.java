@@ -6,12 +6,9 @@ import entity.Report;
 import entity.Status;
 import lombok.extern.log4j.Log4j;
 import mapper.DaoMapper;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
+import java.sql.*;
 import java.util.ArrayList;
-import java.sql.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -94,22 +91,42 @@ public class ReportDAOImpl implements ReportDAO {
         List<Report> reports = new ArrayList<>();
         try (Connection connection = pool.getConnection();
 
-             PreparedStatement statement = connection.prepareStatement(bundle.getString("sql.report.findReportsByUserId"))) {
-
+            PreparedStatement statement = connection.prepareStatement(bundle.getString("sql.report.findReportsByUserId"))) {
             statement.setLong(1, id);
-
             ResultSet rs = statement.executeQuery();
 
             while (rs.next()) {
                 reports.add(daoMapper.mapResultSetToReport(rs));
             }
-
             return reports;
-
         } catch (SQLException e) {
             log.error("Database error (dao level): " + e);
             throw e;
         }
+    }
+
+    @Override
+    public List<Report> paginationReport ( final int currentPage, final int quantityReportOnPage) throws SQLException{
+        List <Report> reports = new ArrayList<>();
+
+        try (Connection connection = pool.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(bundle.getString("sql.report.paginationReport"));
+
+            preparedStatement.setInt(1, quantityReportOnPage);
+            preparedStatement.setInt(2, currentPage);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                reports.add(daoMapper.mapResultSetToReport(resultSet));
+            }
+
+        } catch (SQLException e){
+            log.error("Database error (dao level): " + e);
+            throw e;
+        }
+
+        return reports;
     }
 
     @Override

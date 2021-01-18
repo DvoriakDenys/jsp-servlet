@@ -3,6 +3,8 @@
 
 
 <div>
+
+
         <div class="container mt-5">
             <h1><fmt:message key="front.listOfReports" bundle="${bundle}"/> </h1> <br>
 
@@ -13,7 +15,6 @@
                     <p><b>Name:</b> <span>${report.nameOfReport}</span></p>
 
                     <p><b>Date:</b> <span>${report.createdDate}</span></p>
-
 
                 <div>
                     <c:if test="${report.status.id == 1}">
@@ -35,5 +36,6 @@
             </div>
             </c:forEach>
         </div>
+
 </div>
 

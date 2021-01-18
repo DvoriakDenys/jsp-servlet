@@ -18,4 +18,6 @@ public interface ReportService {
     void updateReport (Report report) throws SQLException;
 
     Report findById(int id) throws SQLException;
+
+    List<Report> paginationReport (int pageNumber, int pageSize) throws SQLException;
 }

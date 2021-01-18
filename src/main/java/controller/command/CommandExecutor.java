@@ -33,6 +33,8 @@ public enum CommandExecutor {
         commandMap.put(CLIENT_CABINET,new PageClientCabinet());
         commandMap.put(CLIENT_REPORT_EDIT,new PageClientReportView(new ServiceFactoryImpl().createReportService()));
 
+        commandMap.put(SORT_AND_PAGINATION_REPORT,new SortingAndPaginationCommand(new ServiceFactoryImpl().createReportService()));
+
         commandMap.put(UPDATE_CLIENT_REPORT,new CommandUpdateClientReport(new ServiceFactoryImpl().createReportService()));
 
         commandMap.put(CLIENT_REPORT_VIEW,new CommandClientViewReport(new ServiceFactoryImpl().createReportService(),

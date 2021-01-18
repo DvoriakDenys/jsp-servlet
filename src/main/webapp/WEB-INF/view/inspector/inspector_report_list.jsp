@@ -19,7 +19,8 @@
 
                 <div>
                     <c:if test="${report.status.id == 1}">
-                        <p align="right" style="color:Green"><b>Accept</b></p>
+                        <p align="right" style="color:Green">
+                        <b><fmt:message key="client.accept" bundle="${bundle}"/></b></p>
                     </c:if>
                     <c:if test="${report.status.id == 2}">
                         <p align="right" style="color:Orange">
@@ -36,5 +37,14 @@
         </table>
         </div>
     </c:forEach>
+
+    <a class="btn btn-warning"
+       href="/cabinet?command=sort_and_pagination_report&currentPage=${currentPage + 1}">
+        <b><fmt:message key="front.nextPage" bundle="${bundle}"/></b></a>
+
+    <a class="btn btn-warning"
+       href="/cabinet?command=sort_and_pagination_report&currentPage=${currentPage - 1}">
+        <b><fmt:message key="front.lastPage" bundle="${bundle}"/></b></a>
+
 </div>
 

@@ -18,7 +18,7 @@ public class PageReportViewCommand implements Command {
         int id = Integer.parseInt(request.getParameter("reportId"));
         Report report = reportService.findById(id);
 
-        request.getSession().setAttribute("report",report);
+        request.getSession().setAttribute("report", report);
 
         return Pages.VIEW;
     }

@@ -32,7 +32,7 @@
         <a class="p-2 text-dark" href="/inspector?command=inspector_cabinet">
             <fmt:message key="front.main" bundle="${bundle}"/></a>
 
-        <a class="p-2 text-dark" href="/inspector?command=inspector_report_list">
+        <a class="p-2 text-dark" href="/cabinet?command=sort_and_pagination_report">
             <fmt:message key="front.report" bundle="${bundle}"/></a>
     </nav>
     <a class="btn btn-outline-primary" href="/logout?command=logout"><span>Logout</span></a>
