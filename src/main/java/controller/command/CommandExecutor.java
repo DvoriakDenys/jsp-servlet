@@ -2,10 +2,7 @@ package controller.command;
 
 import constant.Pages;
 import controller.command.client.*;
-import controller.command.inspector.CommandInspectorViewReport;
-import controller.command.inspector.InspectorAddComment;
-import controller.command.inspector.InspectorReportListCommand;
-import controller.command.inspector.PageInspectorCabinet;
+import controller.command.inspector.*;
 import factory.impl.ServiceFactoryImpl;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,17 +20,17 @@ public enum CommandExecutor {
         commandMap.put(LOGIN_PAGE, new PageLoginCommand());
         commandMap.put(LOGOUT, new LogoutCommand());
         commandMap.put(LOGIN, new LoginCommand(new ServiceFactoryImpl()));
-        commandMap.put(INSPECTOR_REPORT_LIST, new InspectorReportListCommand(new ServiceFactoryImpl().createReportService()));
         commandMap.put(CLIENT_REPORT_LIST, new ClientReportListCommand(new ServiceFactoryImpl().createReportService()));
+
         commandMap.put(LANGUAGE_CHANGE,new ChangeLanguageCommand());
         commandMap.put(REPORT_PAGE,new PageReportCreateCommand());
         commandMap.put(CREATE_REPORT, new ReportCreateCommand(new ServiceFactoryImpl().createReportService()));
         commandMap.put(VIEW_PAGE,new PageReportViewCommand(new ServiceFactoryImpl().createReportService()));
         commandMap.put(INSPECTOR_CABINET,new PageInspectorCabinet());
         commandMap.put(CLIENT_CABINET,new PageClientCabinet());
-        commandMap.put(CLIENT_REPORT_EDIT,new PageClientReportView(new ServiceFactoryImpl().createReportService()));
+        commandMap.put(CLIENT_REPORT_EDIT,new PageClientReportEdit(new ServiceFactoryImpl().createReportService()));
 
-        commandMap.put(SORT_AND_PAGINATION_REPORT,new SortingAndPaginationCommand(new ServiceFactoryImpl().createReportService()));
+        commandMap.put(INSPECTOR_REPORT_LIST,new InspectorReportListCommand(new ServiceFactoryImpl().createReportService()));
 
         commandMap.put(UPDATE_CLIENT_REPORT,new CommandUpdateClientReport(new ServiceFactoryImpl().createReportService()));
 

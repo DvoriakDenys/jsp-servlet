@@ -18,8 +18,9 @@ public class ReportServiceImpl implements ReportService {
     }
 
     @Override
-    public List<Report> findAllReportsByUserId(Long id) throws SQLException {
-        return reportDAO.findAllReportsByUserId(id);
+    public List<Report> findAllReportsByUserId(final Long id, final int currentPage, final int quantityReportOnPage,
+                                               final String sorting, final String status) throws SQLException{
+        return reportDAO.findAllReportsByUserId(id, currentPage, quantityReportOnPage, sorting, status);
     }
 
     public void save(Report report) throws SQLException {
@@ -37,9 +38,16 @@ public class ReportServiceImpl implements ReportService {
     }
 
     @Override
-    public List<Report> paginationReport (int pageNumber, int pageSize, String sorting) throws SQLException{
+    public List<Report> sortReportsByStatus(final int currentPage, final int quantityReportOnPage,
+                                            final int id) throws SQLException{
+        return reportDAO.sortReportsByStatus(currentPage, quantityReportOnPage, id);
+    }
 
-        return reportDAO.paginationReport(pageNumber, pageSize, sorting);
+    @Override
+    public List<Report> paginationReport (int pageNumber, int pageSize, String sorting,
+                                          final String status) throws SQLException{
+
+        return reportDAO.paginationReport(pageNumber, pageSize, sorting, status);
     }
 
     @Override

@@ -11,12 +11,16 @@
         <h1><fmt:message key="front.listOfReports" bundle="${bundle}"/> </h1> <br>
 
     <a class="btn btn-warning"
-       href="/cabinet?command=sort_and_pagination_report&sorting=report">
+       href="/cabinet?command=inspector_report_list&sorting=report">
         <b>Sort by report</b></a>
 
     <a class="btn btn-warning"
-       href="/cabinet?command=sort_and_pagination_report&sorting=created_date">
+        href="/cabinet?command=inspector_report_list&sorting=created_date">
         <b>Sort by created_date</b></a>
+
+    <a class="btn btn-warning"
+       href="/cabinet?command=inspector_report_list&status=2">
+        <b>Sort by status</b></a>
 
     <c:forEach var="report" items="${reports}">
         <div class="alert alert-info mt-2">
@@ -48,24 +52,59 @@
 
     <c:choose>
         <c:when test="${currentPage < quantityPage}">
-            <a class="btn btn-warning"
-               href="/cabinet?command=sort_and_pagination_report&currentPage=${currentPage + 1}">
-                <b><fmt:message key="front.nextPage" bundle="${bundle}"/></b></a>
+
+            <c:if test="${status == null && sorting != null}">
+                <a class="btn btn-warning"
+                   href="/cabinet?command=inspector_report_list&currentPage=${currentPage + 1}&sorting=${sorting}">
+                    <b><fmt:message key="front.nextPage" bundle="${bundle}"/></b></a>
+            </c:if>
+
+            <c:if test="${status != null && sorting == null}">
+                <a class="btn btn-warning"
+                   href="/cabinet?command=inspector_report_list&currentPage=${currentPage + 1}&status=${status}">
+                    <b><fmt:message key="front.nextPage" bundle="${bundle}"/></b></a>
+            </c:if>
+
+            <c:if test="${status == null && sorting == null}">
+                <a class="btn btn-warning"
+                   href="/cabinet?command=inspector_report_list&currentPage=${currentPage + 1}">
+                    <b><fmt:message key="front.nextPage" bundle="${bundle}"/></b></a>
+            </c:if>
+
         </c:when>
+
         <c:otherwise>
             <b><fmt:message key="front.nextPage" bundle="${bundle}"/></b>
         </c:otherwise>
     </c:choose>
 
     <c:choose>
-        <c:when test="${currentPage > 1 && currentPage <= quantityPage }">
-            <a class="btn btn-warning"
-               href="/cabinet?command=sort_and_pagination_report&currentPage=${currentPage - 1}">
-                <b><fmt:message key="front.lastPage" bundle="${bundle}"/></b></a>
+        <c:when test="${currentPage > 0 && currentPage <= quantityPage }">
+
+            <c:if test="${status == null && sorting != null}">
+                <a class="btn btn-warning"
+                   href="/cabinet?command=inspector_report_list&currentPage=${currentPage - 1}&sorting=${sorting}">
+                    <b><fmt:message key="front.lastPage" bundle="${bundle}"/></b></a>
+            </c:if>
+
+            <c:if test="${status != null && sorting == null}">
+                <a class="btn btn-warning"
+                   href="/cabinet?command=inspector_report_list&currentPage=${currentPage - 1}&status=${status}">
+                    <b><fmt:message key="front.lastPage" bundle="${bundle}"/></b></a>
+            </c:if>
+
+            <c:if test="${status == null && sorting == null}">
+                <a class="btn btn-warning"
+                   href="/cabinet?command=inspector_report_list&currentPage=${currentPage - 1}">
+                    <b><fmt:message key="front.lastPage" bundle="${bundle}"/></b></a>
+            </c:if>
+
         </c:when>
+
         <c:otherwise>
             <b><fmt:message key="front.lastPage" bundle="${bundle}"/></b></a>
         </c:otherwise>
+
     </c:choose>
 
 </div>

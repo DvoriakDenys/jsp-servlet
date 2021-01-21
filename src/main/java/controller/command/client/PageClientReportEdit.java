@@ -9,11 +9,11 @@ import service.ReportService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class PageClientReportView implements Command {
+public class PageClientReportEdit implements Command {
 
     private final ReportService reportService;
 
-    public PageClientReportView(ReportService reportService) {
+    public PageClientReportEdit(ReportService reportService) {
         this.reportService = reportService;
     }
 

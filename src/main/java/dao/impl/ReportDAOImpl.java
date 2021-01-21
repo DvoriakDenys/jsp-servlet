@@ -3,7 +3,6 @@ package dao.impl;
 import config.pool.ConnectionPool;
 import dao.ReportDAO;
 import entity.Report;
-import entity.Status;
 import lombok.extern.log4j.Log4j;
 import mapper.DaoMapper;
 
@@ -74,11 +73,9 @@ public class ReportDAOImpl implements ReportDAO {
              PreparedStatement statement = connection.prepareStatement(bundle.getString("sql.report.findById"))) {
             statement.setInt(1, id);
             ResultSet rs = statement.executeQuery();
-
             if (rs.next()) {
                 return daoMapper.mapResultSetToReport(rs);
             }
-
         } catch (SQLException e) {
             log.error("Database error (dao level): " + e);
             throw e;
@@ -88,33 +85,53 @@ public class ReportDAOImpl implements ReportDAO {
     }
 
     @Override
-    public List<Report> findAllReportsByUserId(Long id) throws SQLException {
-        List<Report> reports = new ArrayList<>();
-        try (Connection connection = pool.getConnection();
+    public List<Report> findAllReportsByUserId(final Long id, final int currentPage, final int quantityReportOnPage,
+                                               final String sorting, final String status) throws SQLException{
+        List <Report> reports = new ArrayList<>();
+        String resultQuery;
 
-            PreparedStatement statement = connection.prepareStatement(bundle.getString("sql.report.findReportsByUserId"))) {
-            statement.setLong(1, id);
-            ResultSet rs = statement.executeQuery();
+        try (Connection connection = pool.getConnection()){
 
-            while (rs.next()) {
-                reports.add(daoMapper.mapResultSetToReport(rs));
+            if (status == null) {
+                String query = bundle.getString("sql.report.findReportsByUserId");
+                resultQuery = MessageFormat.format(query, id, sorting, quantityReportOnPage, currentPage);
+            } else {
+                String query = bundle.getString("sql.report.sort.user.status");
+                resultQuery = MessageFormat.format(query, status, id, quantityReportOnPage, currentPage);
             }
-            return reports;
+
+            PreparedStatement preparedStatement = connection.prepareStatement(resultQuery);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                reports.add(daoMapper.mapResultSetToReport(resultSet));
+            }
+
         } catch (SQLException e) {
             log.error("Database error (dao level): " + e);
             throw e;
         }
+        return reports;
     }
 
     @Override
     public List<Report> paginationReport ( final int currentPage, final int quantityReportOnPage,
-                                           final String sorting) throws SQLException{
+                                           final String sorting, final String status) throws SQLException{
         List <Report> reports = new ArrayList<>();
+        String resultQuery;
 
         try (Connection connection = pool.getConnection()) {
-            String query = bundle.getString("sql.report.paginationReport");
-            String query2 = MessageFormat.format(query, sorting, quantityReportOnPage, currentPage);
-            PreparedStatement preparedStatement = connection.prepareStatement(query2);
+
+            if (status == null) {
+                String query = bundle.getString("sql.report.paginationReport");
+                resultQuery = MessageFormat.format(query, sorting, quantityReportOnPage, currentPage);
+            } else {
+                String query = bundle.getString("sql.report.sort.status");
+                resultQuery = MessageFormat.format(query, status, quantityReportOnPage, currentPage);
+            }
+
+            PreparedStatement preparedStatement = connection.prepareStatement(resultQuery);
+
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
@@ -128,6 +145,26 @@ public class ReportDAOImpl implements ReportDAO {
 
         return reports;
     }
+
+
+
+    @Override
+    public List<Report> sortReportsByStatus (final int currentPage, final int quantityReportOnPage,
+                                             final int id) throws SQLException{
+        List <Report> reports = new ArrayList<>();
+        try (Connection connection = pool.getConnection()){
+            String query = bundle.getString("sql.report.sort.status");
+            String query2 = MessageFormat.format(query, id, quantityReportOnPage, currentPage);
+            PreparedStatement preparedStatement = connection.prepareStatement(query2);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                reports.add(daoMapper.mapResultSetToReport(resultSet)); }
+        }catch (SQLException e) {
+            log.error("Database error (dao level): " + e);
+            throw e; }
+        return reports;
+    }
+
 
     @Override
     public void updateReport (Report report) throws SQLException{

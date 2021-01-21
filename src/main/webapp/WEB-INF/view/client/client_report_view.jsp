@@ -1,5 +1,5 @@
 <%@page pageEncoding="UTF-8" %>
-<%@include file="../components/inspector_header.jsp" %>
+<%@include file="../components/client_header.jsp" %>
 
 
 <div>
@@ -17,7 +17,6 @@
 
                 <h4>
                     <fmt:message key="front.commentFromInspector" bundle="${bundle}"/>
-
                 </h4>
 
 
