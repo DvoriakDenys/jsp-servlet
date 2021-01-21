@@ -30,6 +30,7 @@
 
 </div>
 
+
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-3">
@@ -42,15 +43,22 @@
                     <input type="password" name="password" class="form-control input-sm chat-input"
                            placeholder="<fmt:message key="front.password" bundle="${bundle}"/>"/>
                     </br>
+
                     <div class="wrapper">
                         <input name="command" value="login" type="hidden">
                         <span class="group-btn">
                              <button type="submit" class="btn btn-success">
                                  <fmt:message key="front.signIn" bundle="${bundle}"/></button>
                         </span>
+
+                        <a class="p-2 text-dark" href="/registration?command=registration_page">
+                            <fmt:message key="front.registration" bundle="${bundle}"/></a>
+
                     </div>
                 </form>
             </div>
+
+
             <c:if test="${error == 'true'}">
                 <h5 style="color: red; text-align: center"><fmt:message key="welcome" bundle="${bundle}"/></h5>
             </c:if>

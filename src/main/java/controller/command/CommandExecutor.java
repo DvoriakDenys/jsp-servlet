@@ -4,6 +4,8 @@ import constant.Pages;
 import controller.command.client.*;
 import controller.command.inspector.*;
 import factory.impl.ServiceFactoryImpl;
+import service.impl.UserServiceImpl;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
@@ -25,9 +27,15 @@ public enum CommandExecutor {
         commandMap.put(LANGUAGE_CHANGE,new ChangeLanguageCommand());
         commandMap.put(REPORT_PAGE,new PageReportCreateCommand());
         commandMap.put(CREATE_REPORT, new ReportCreateCommand(new ServiceFactoryImpl().createReportService()));
-        commandMap.put(VIEW_PAGE,new PageReportViewCommand(new ServiceFactoryImpl().createReportService()));
+
+        commandMap.put(REGISTRATION, new RegistrationCommand(new ServiceFactoryImpl().createUserService()));
+
         commandMap.put(INSPECTOR_CABINET,new PageInspectorCabinet());
+
         commandMap.put(CLIENT_CABINET,new PageClientCabinet());
+
+        commandMap.put(REGISTRATION_PAGE,new RegistrationPage());
+
         commandMap.put(CLIENT_REPORT_EDIT,new PageClientReportEdit(new ServiceFactoryImpl().createReportService()));
 
         commandMap.put(INSPECTOR_REPORT_LIST,new InspectorReportListCommand(new ServiceFactoryImpl().createReportService()));

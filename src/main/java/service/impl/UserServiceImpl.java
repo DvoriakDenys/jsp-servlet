@@ -24,6 +24,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void saveUser(User user) throws SQLException {
+        userDAO.save(user);
     }
 
     @Override

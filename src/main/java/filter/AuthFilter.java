@@ -49,6 +49,8 @@ public class AuthFilter implements Filter {
             case LOGIN:
             case LOGIN_PAGE:
             case LANGUAGE_CHANGE:
+            case REGISTRATION_PAGE:
+            case REGISTRATION:
                 break;
             default:
                 if (user == null) {

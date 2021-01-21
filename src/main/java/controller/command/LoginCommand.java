@@ -30,6 +30,8 @@ public class LoginCommand implements Command {
             return Pages.LOGIN;
         }
 
+        String command = request.getParameter("command");
+
         request.getSession().setAttribute("user", user);
         if (userRole.getRole().equals(Role.INSPECTOR)) {
             return Pages.INSPECTOR_CABINET;

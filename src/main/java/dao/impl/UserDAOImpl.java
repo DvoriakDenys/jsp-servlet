@@ -26,7 +26,6 @@ public class UserDAOImpl implements UserDAO {
         log.info("Execute query=" + query);
         ResultSet resultSet = null;
 
-
         try (Connection connection = pool.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setString(1, email);
@@ -42,6 +41,26 @@ public class UserDAOImpl implements UserDAO {
         }
 
         return null;
+    }
+
+    @Override
+    public void save (User user) throws SQLException{
+        final String query = bundle.getString("sql.add.new.user");
+        try (Connection connection = pool.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(query)){
+
+            preparedStatement.setString(1, user.getEmail());
+            preparedStatement.setString(2, user.getFirstName());
+            preparedStatement.setString(3, user.getLastName());
+            preparedStatement.setString(4, user.getMiddleName());
+            preparedStatement.setString(5, user.getPassword());
+            preparedStatement.setInt(6, 2);
+
+            preparedStatement.execute();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     @Override

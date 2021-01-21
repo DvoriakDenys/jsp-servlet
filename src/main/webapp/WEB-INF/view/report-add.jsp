@@ -22,7 +22,6 @@
         <h3> <fmt:message key="report.create" bundle="${bundle}"/> </h3>
         <textarea name="report" placeholder="Write your report here" class="form-control" rows="5" cols="33"></textarea><br>
 
-
         <input name="command" value="create_report" type="hidden"/>
 
         <button type="submit" class="btn btn-success"><span>

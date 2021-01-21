@@ -59,6 +59,7 @@ public class ReportDAOImpl implements ReportDAO {
             ps.setString(4, report.getReport());
             ps.setInt(5, 2);
             ps.setLong(6, report.getUser().getId());
+
             return ps.execute();
 
         } catch (SQLException e) {
