@@ -26,19 +26,19 @@
         <fmt:message key="front.tax" bundle="${bundle}"/></h5>
 
     <nav class="my-2 my-md-0 mr-md-3">
-        <a href="/?command=LANGUAGE_CHANGE&lang=ua" class="btn btn-primary btn-sm">UK</a>
-        <a href="/?command=LANGUAGE_CHANGE&lang=en" class="btn btn-warning btn-sm">EN</a>
+        <a href="/client?command=LANGUAGE_CHANGE&lang=ua" class="btn btn-primary btn-sm">UK</a>
+        <a href="/client?command=LANGUAGE_CHANGE&lang=en" class="btn btn-warning btn-sm">EN</a>
 
-        <a class="p-2 text-dark" href="/cabinet?command=client_cabinet">
+        <a class="p-2 text-dark" href="/client?command=client_cabinet">
            <fmt:message key="front.main" bundle="${bundle}"/></a>
 
-        <a class="p-2 text-dark" href="/cabinet?command=client_report_list">
+        <a class="p-2 text-dark" href="/client?command=client_report_list">
             <fmt:message key="front.report" bundle="${bundle}"/></a>
 
-        <a class="p-2 text-dark" href="/cabinet?command=report_page">
+        <a class="p-2 text-dark" href="/client?command=report_page">
             <fmt:message key="report.newReport" bundle="${bundle}"/></a>
     </nav>
-    <a class="btn btn-outline-primary" href="/logout?command=logout"><span>
+    <a class="btn btn-outline-primary" href="/client?command=logout"><span>
         <fmt:message key="front.signOut" bundle="${bundle}"/></span></a>
 
 </div>

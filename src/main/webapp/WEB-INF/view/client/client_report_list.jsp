@@ -30,7 +30,7 @@
                     </c:if>
                 </div>
 
-                    <a class="btn btn-warning" href="/cabinet?command=client_report_view&reportId=${report.id}"> <span>View</span></a>
+                    <a class="btn btn-warning" href="/client?command=client_report_view&reportId=${report.id}"> <span>View</span></a>
 
                 </table>
             </div>

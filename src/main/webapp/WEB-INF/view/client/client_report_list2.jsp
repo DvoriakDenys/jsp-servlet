@@ -8,15 +8,15 @@
     <h1><fmt:message key="front.listOfReports" bundle="${bundle}"/> </h1> <br>
 
     <a class="btn btn-warning"
-       href="/cabinet?command=client_report_list&sorting=report">
+       href="/client?command=client_report_list&sorting=report">
         <b>Sort by report</b></a>
 
     <a class="btn btn-warning"
-       href="/cabinet?command=client_report_list&sorting=created_date">
+       href="/client?command=client_report_list&sorting=created_date">
         <b>Sort by created_date</b></a>
 
     <a class="btn btn-warning"
-       href="/cabinet?command=client_report_list&status=2">
+       href="/client?command=client_report_list&status=2">
         <b>Sort by status</b></a>
 
     <c:forEach var="report" items="${reports}">
@@ -41,7 +41,7 @@
                     </c:if>
                 </div>
 
-                <a class="btn btn-warning" href="/cabinet?command=client_report_view&reportId=${report.id}"> <span>View</span></a>
+                <a class="btn btn-warning" href="/client?command=client_report_view&reportId=${report.id}"> <span>View</span></a>
 
             </table>
         </div>
@@ -52,19 +52,19 @@
 
             <c:if test="${status == null && sorting != null}">
                 <a class="btn btn-warning"
-                   href="/cabinet?command=client_report_list&currentPage=${currentPage + 1}&sorting=${sorting}">
+                   href="/client?command=client_report_list&currentPage=${currentPage + 1}&sorting=${sorting}">
                     <b><fmt:message key="front.nextPage" bundle="${bundle}"/></b></a>
             </c:if>
 
             <c:if test="${status != null && sorting == null}">
                 <a class="btn btn-warning"
-                   href="/cabinet?command=client_report_list&currentPage=${currentPage + 1}&status=${status}">
+                   href="/client?command=client_report_list&currentPage=${currentPage + 1}&status=${status}">
                     <b><fmt:message key="front.nextPage" bundle="${bundle}"/></b></a>
             </c:if>
 
             <c:if test="${status == null && sorting == null}">
                 <a class="btn btn-warning"
-                   href="/cabinet?command=client_report_list&currentPage=${currentPage + 1}">
+                   href="/client?command=client_report_list&currentPage=${currentPage + 1}">
                     <b><fmt:message key="front.nextPage" bundle="${bundle}"/></b></a>
             </c:if>
 
@@ -80,19 +80,19 @@
 
             <c:if test="${status == null && sorting != null}">
                 <a class="btn btn-warning"
-                   href="/cabinet?command=client_report_list&currentPage=${currentPage - 1}&sorting=${sorting}">
+                   href="/client?command=client_report_list&currentPage=${currentPage - 1}&sorting=${sorting}">
                     <b><fmt:message key="front.lastPage" bundle="${bundle}"/></b></a>
             </c:if>
 
             <c:if test="${status != null && sorting == null}">
                 <a class="btn btn-warning"
-                   href="/cabinet?command=client_report_list&currentPage=${currentPage - 1}&status=${status}">
+                   href="/client?command=client_report_list&currentPage=${currentPage - 1}&status=${status}">
                     <b><fmt:message key="front.lastPage" bundle="${bundle}"/></b></a>
             </c:if>
 
             <c:if test="${status == null && sorting == null}">
                 <a class="btn btn-warning"
-                   href="/cabinet?command=client_report_list&currentPage=${currentPage - 1}">
+                   href="/client?command=client_report_list&currentPage=${currentPage - 1}">
                     <b><fmt:message key="front.lastPage" bundle="${bundle}"/></b></a>
             </c:if>
 

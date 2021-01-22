@@ -26,16 +26,16 @@
         <fmt:message key="front.tax" bundle="${bundle}"/></h5>
 
     <nav class="my-2 my-md-0 mr-md-3">
-        <a href="/?command=LANGUAGE_CHANGE&lang=ua" class="btn btn-primary btn-sm">UK</a>
-        <a href="/?command=LANGUAGE_CHANGE&lang=en" class="btn btn-warning btn-sm">EN</a>
+        <a href="/inspector?command=LANGUAGE_CHANGE&lang=ua" class="btn btn-primary btn-sm">UK</a>
+        <a href="/inspector?command=LANGUAGE_CHANGE&lang=en" class="btn btn-warning btn-sm">EN</a>
 
         <a class="p-2 text-dark" href="/inspector?command=inspector_cabinet">
             <fmt:message key="front.main" bundle="${bundle}"/></a>
 
-        <a class="p-2 text-dark" href="/cabinet?command=inspector_report_list">
+        <a class="p-2 text-dark" href="/inspector?command=inspector_report_list">
             <fmt:message key="front.report" bundle="${bundle}"/></a>
     </nav>
-    <a class="btn btn-outline-primary" href="/logout?command=logout"><span>Logout</span></a>
+    <a class="btn btn-outline-primary" href="/inspector?command=logout"><span>Logout</span></a>
 </div>
 
 </body>

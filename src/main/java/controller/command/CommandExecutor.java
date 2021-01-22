@@ -3,13 +3,16 @@ package controller.command;
 import constant.Pages;
 import controller.command.client.*;
 import controller.command.inspector.*;
+import entity.Role;
+import entity.User;
 import factory.impl.ServiceFactoryImpl;
-import service.impl.UserServiceImpl;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Stream;
 
 import static controller.command.CommandType.*;
 
@@ -23,7 +26,6 @@ public enum CommandExecutor {
         commandMap.put(LOGOUT, new LogoutCommand());
         commandMap.put(LOGIN, new LoginCommand(new ServiceFactoryImpl()));
         commandMap.put(CLIENT_REPORT_LIST, new ClientReportListCommand(new ServiceFactoryImpl().createReportService()));
-
         commandMap.put(LANGUAGE_CHANGE,new ChangeLanguageCommand());
         commandMap.put(REPORT_PAGE,new PageReportCreateCommand());
         commandMap.put(CREATE_REPORT, new ReportCreateCommand(new ServiceFactoryImpl().createReportService()));
@@ -56,12 +58,30 @@ public enum CommandExecutor {
 
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String command = (String) request.getAttribute("command");
+        User user = (User) request.getSession().getAttribute("user");
+
 
         if (command == null) {
-            command = request.getParameter("command");
+            command = request.getParameter("command"); }
+
+        if (command == null && user == null) {
+            return Pages.LOGIN;
         }
 
-        if (command == null) return Pages.LOGIN;
-        return commandMap.get(CommandType.valueOf(command.toUpperCase())).execute(request, response);
+        if (user != null && user.getRole().getRole().equals(Role.CLIENT)
+                && request.getServletPath().equals("/client")) {
+            return commandMap.get(CommandType.valueOf(command.toUpperCase())).execute(request, response);
+
+        }else if (user != null && user.getRole().getRole().equals(Role.INSPECTOR)
+                && request.getServletPath().equals("/inspector")) {
+            return commandMap.get(CommandType.valueOf(command.toUpperCase())).execute(request, response);
+
+        }else if (user == null){
+            return commandMap.get(CommandType.valueOf(command.toUpperCase())).execute(request, response);
+
+        } else return Pages.ERROR_PAGE;
+
+
     }
+
 }
