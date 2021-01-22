@@ -46,7 +46,7 @@
                     <fmt:message key="front.registration" bundle="${bundle}"/>
                 </h1><br>
                 <div class="row justify-content-center">
-                    <div class="col-4">
+                    <div class="col-8">
                     <span class="d-inline-block text-truncate">
                         <fmt:message key="payer.lastName" bundle="${bundle}"/>
                     </span>
@@ -56,8 +56,9 @@
                     </div>
                 </div>
 
+
                 <div class="row justify-content-center">
-                    <div class="col-4">
+                    <div class="col-8">
                     <span class="d-inline-block text-truncate">
                         <fmt:message key="payer.firstName" bundle="${bundle}"/>
                     </span>
@@ -68,51 +69,55 @@
                 </div>
 
                 <div class="row justify-content-center">
-                    <div class="col-4">
+                    <div class="col-8">
                     <span class="d-inline-block text-truncate">
                         <fmt:message key="payer.middleName" bundle="${bundle}"/>
                     </span>
-                        <s:form action="middleName" method="post">
                         <label>
                             <input type="text" name="middleName" class="form-control">
                         </label><br>
-                        </s:form>
                     </div>
                 </div>
 
 
                 <div class="row justify-content-center">
-                    <div class="col-4">
+                    <div class="col-8">
                     <span class="d-inline-block text-truncate">
                         <fmt:message key="payer.email" bundle="${bundle}"/>
                     </span>
                         <div class="form-group">
+                            <c:if test="${notValidateEmail != null}">
+                                <p style="color:Red">${notValidateEmail}</p>
+                            </c:if>
                             <label>
                                 <input type="text" class="form-control" name="email">
-                            </label>
+                            </label><br>
                         </div>
                     </div>
                 </div>
 
                 <div class="row justify-content-center">
-                    <div class="col-4">
+                    <div class="col-8">
                     <span class="d-inline-block text-truncate">
                         <fmt:message key="front.password" bundle="${bundle}"/>
                     </span>
                         <div>
+                            <c:if test="${notValidatePassword != null}">
+                                <p style="color:Red">${notValidatePassword}</p>
+                            </c:if>
+
                             <label>
-                                <input type="password" class="form-control" name="password" size="135">
+                                <input type="password" class="form-control" name="password">
                             </label>
                         </div>
                     </div>
                 </div>
 
                 <div class="row justify-content-center">
-                    <div class="col-2">
+                    <div class="col-6">
                         <input name="command" value="registration" type="hidden">
                         <button class="btn btn-lg btn-primary btn-block" type="submit">
                             <fmt:message key="front.confirm" bundle="${bundle}"/>
-<%--                            Approve--%>
                         </button>
                     </div>
                 </div>
